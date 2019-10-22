@@ -17,8 +17,8 @@ class Counter extends Component{
             <View>
                 <Text>Contoh Redux</Text>
                 <Text>Counter : {this.props.count}</Text>
-                <Button title="Tambah" onPress={this.addIncrement}/>
-                <Button title="Kurang" onPress={this.minIncrement}/>
+                <Button title="Tambah"  onPress={this.addIncrement}/>
+                <Button title="Kurang"  onPress={this.minIncrement}/>
             </View>
         );
     }
