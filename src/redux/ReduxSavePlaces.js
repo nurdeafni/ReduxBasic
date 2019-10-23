@@ -24,7 +24,7 @@ class ReduxSavePlaces extends Component{
             <FlatList
             style={styles.listContainer}
             data={this.props.places}
-            keyExtractor={(item,index)=> index.toString()}
+            keyExtractor={(item,index) => index.toString()}
             renderItem={info => <ListItem placeName={info.item.value}/>}
           />  
         );

@@ -3,13 +3,13 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 const ListItem = props =>{
     return (
         <TouchableOpacity>
-            <View style={StyleSheet.listItem}>
+            <View style={styles.listItem}>
                 <Text>{props.placeName}</Text>
             </View>
         </TouchableOpacity>
     );
 };
-const style= StyleSheet.create({
+const styles= StyleSheet.create({
     listItem:{
         width: '100%',
         padding: 10,
