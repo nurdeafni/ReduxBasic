@@ -1,52 +1,50 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, TextInput, Button, FlatList} from 'react-native';
 import ListItem from './component/ListItem';
-import {bimdActionCreators, bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {addPlace} from './actions';
-class ReduxSavePlaces extends Component{
+import {addCity} from './actions';
+
+class ReduxSaveCity extends Component{
     state={
-        placeName: '',
-      
+        cityName:'',
     };
-    placeSubmitHandler=() =>{
-        if (this.state.placeName.trim() === ''){
+    citySubmitHandler=() =>{
+        if(this.state.cityName.trim() === ''){
             return;
         }
-        this.props.add(this.state.placeName);
+        this.props.add(this.state.cityName);
     };
-    placeNameChangeHandler= value =>{
+    cityNameChangeHandler= value => {
         this.setState({
-            placeName: value,
+            cityName: value,
         });
     };
     placeOutput=()=>{
         return(
             <FlatList
             style={styles.listContainer}
-            data={this.props.dataPlaces}
+            data={this.props.dataCity}
             keyExtractor={(item,index) => index.toString()}
-            renderItem={info => <ListItem placeName={info.item.value}/>}
+            renderItem={info => <ListItem cityName={info.item.value}/>}
           />  
         );
     };
-
     render(){
         console.log('Data Props Reducer');
-        console.log(this.props.dataPlaces);
+        console.log(this.props.dataCity);
         return(
             <View style={styles.container}>
                 <View style={styles.inputContainer}>
                     <TextInput
                     placeholder="Seach Places"
-                    style={styles.placeInput}
-                    value={this.state.placeName}
-                    onChangeText = {this.placeNameChangeHandler}
+                    style={styles.cityInput}
+                    value={this.state.cityName}
+                    onChangeText = {this.cityNameChangeHandler}
                     />
                     <Button 
                     title="Add"
-                    style={styles.placeButton}
-                    onPress={this.placeSubmitHandler}
+                    style={styles.cityButton}
+                    onPress={this.citySubmitHandler}
                     />
                 </View>
              <View style={styles.listContainer}>
@@ -67,34 +65,32 @@ const styles= StyleSheet.create({
         alignItems: 'center',
         width: '100%',
     },
-    placeInput:{
+    cityInput:{
         width: '70%',
     },
-    placeButton:{
+    cityButton:{
         width: '30%',
     },
     listContainer:{
         width: '100%',
     },
 });
-
-//export default ReduxSaveData
 const mapStateToProps= state => {
+    console.log('mapStatePRops');
+    console.log(state);
     return{
-        dataPlaces: state.listPlaces.places,
+        dataCity: state.listCity.city
     };
 };
-
 const mapDispatchToProps = dispatch => {
     return{
         add: name => {
-            dispatch(addPlace(name)); //dispatch menghubungkan action menuju reducers
+            dispatch(addCity(name)); //dispatch menghubungkan action menuju reducers
         },
     };
-    //return bindActionCreators({add: addPlace, dispatch}); // dispatch menghubungkan 
 };
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-) (ReduxSavePlaces);
+) (ReduxSaveCity);
